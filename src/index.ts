@@ -8,34 +8,36 @@ type DefaultMap<V extends VariantsMap> = {
   [K in keyof V]: keyof V[K];
 };
 
-export interface VariantsInterface {
-  base: string;
-  variants: VariantsMap;
-  default: DefaultMap<VariantsMap>;
-}
+type VariantOptions<V extends VariantsMap> = {
+  [K in keyof V]?: keyof V[K];
+};
+
+type CompoundVariant<V extends VariantsMap> = (options: {
+  [K in keyof V]: keyof V[K];
+}) => string | undefined;
 
 export class Variants<V extends VariantsMap, D extends DefaultMap<V>> {
   base: string;
   variants: V;
   default: D;
+  compoundVariants?: CompoundVariant<V>[];
 
-  constructor(config: { base: string; variants: V; default: D }) {
+  constructor(config: {
+    base: string;
+    variants: V;
+    default: D;
+    compoundVariants?: CompoundVariant<V>[];
+  }) {
     this.base = config.base;
     this.variants = config.variants;
     this.default = config.default;
+    this.compoundVariants = config.compoundVariants || [];
   }
 
-  getVariantClasses(variant: string, value: string) {
-    if (!this.variants || !this.variants[variant]) {
-      return "";
-    }
-
-    return this.variants[variant][value];
-  }
-
-  forgeClasses(options: Partial<{ [K in keyof V]: keyof V[K] }>): string {
+  forgeClasses(options: VariantOptions<V> = {}): string {
     const classes = [this.base];
 
+    // Apply regular variants
     for (const key in this.variants) {
       const variantKey = key as keyof V;
 
@@ -44,6 +46,20 @@ export class Variants<V extends VariantsMap, D extends DefaultMap<V>> {
 
       if (variantClass) {
         classes.push(variantClass);
+      }
+    }
+
+    // Apply compound variants
+    if (this.compoundVariants) {
+      for (const compoundVariant of this.compoundVariants) {
+        const compundClass = compoundVariant({
+          ...this.default,
+          ...options,
+        } as { [K in keyof V]: keyof V[K] });
+
+        if (compundClass) {
+          classes.push(compundClass);
+        }
       }
     }
 
