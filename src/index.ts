@@ -35,7 +35,9 @@ export class Variants<V extends VariantsMap, D extends DefaultMap<V>> {
   }
 
   forgeClasses(options: VariantOptions<V> = {}): string {
-    const classes = [this.base];
+    const classes = new Set<string>();
+
+    classes.add(this.base);
 
     // Apply regular variants
     for (const key in this.variants) {
@@ -45,7 +47,7 @@ export class Variants<V extends VariantsMap, D extends DefaultMap<V>> {
       const variantClass = this.variants[variantKey][value as keyof V[keyof V]];
 
       if (variantClass) {
-        classes.push(variantClass);
+        classes.add(variantClass);
       }
     }
 
@@ -58,11 +60,13 @@ export class Variants<V extends VariantsMap, D extends DefaultMap<V>> {
         } as { [K in keyof V]: keyof V[K] });
 
         if (compundClass) {
-          classes.push(compundClass);
+          compundClass.split(" ").forEach((c) => {
+            classes.add(c.trim());
+          });
         }
       }
     }
 
-    return cn(this.base, ...classes);
+    return cn(...Array.from(classes));
   }
 }
