@@ -1,9 +1,16 @@
 {
-  "name": "kurasu",
-  "version": "0.0.0",
+  "name": "@kurasu/core",
+  "version": "0.1.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "description": "",
+  "keywords": [
+    "css",
+    "styling",
+    "javascript",
+    "typescript",
+    "bun"
+  ],
+  "description": "A package for generating classes based on the provided variants.",
   "scripts": {
     "build": "bun run build.mjs",
     "prepublishOnly": "bun run build"
@@ -11,16 +18,13 @@
   "files": [
     "dist"
   ],
-  "keywords": [
-    "bun"
-  ],
   "license": "MIT",
-  "homepage": "https://github.com/wobsoriano/pkg-name#readme",
+  "homepage": "https://github.com/dawidseipold/kurasu",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wobsoriano/pkg-name.git"
+    "url": "git+https://github.com/dawidseipold/kurasu"
   },
-  "bugs": "https://github.com/wobsoriano/pkg-name/issues",
+  "bugs": "https://github.com/dawidseipold/kurasu/issues",
   "author": "Robert Soriano <sorianorobertc@gmail.com>",
   "devDependencies": {
     "bun-plugin-dts": "^0.2.1",
