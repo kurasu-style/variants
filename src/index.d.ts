@@ -1,3 +1,6 @@
+export type VariantsType<T> = T extends () => infer R ? R : never;
+export type VariantKey<T, K extends keyof T> = keyof T[K];
+
 type VariantsMap = {
   [key: string]: { [key: string]: string };
 };
