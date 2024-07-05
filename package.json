@@ -1,8 +1,9 @@
 {
   "name": "@kurasu/core",
-  "version": "0.1.2",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "version": "0.1.3",
+  "main": "lib/index.js",
+  "type": "module",
+  "types": "lib/index.d.ts",
   "keywords": [
     "css",
     "styling",
@@ -11,12 +12,17 @@
     "bun"
   ],
   "description": "A package for generating classes based on the provided variants.",
+  "exports": {
+    ".": "./lib/index.js",
+    "./*": "./lib/*.js"
+  },
   "scripts": {
-    "build": "bun run build.mjs",
-    "prepublishOnly": "bun run build"
+    "build:test": "bun build.ts && bun test",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix"
   },
   "files": [
-    "dist"
+    "lib"
   ],
   "license": "MIT",
   "homepage": "https://github.com/dawidseipold/kurasu",
@@ -25,10 +31,14 @@
     "url": "git+https://github.com/dawidseipold/kurasu"
   },
   "bugs": "https://github.com/dawidseipold/kurasu/issues",
-  "author": "Robert Soriano <sorianorobertc@gmail.com>",
+  "author": "Dawid Seipold <contact@dawidseipold.com>",
   "devDependencies": {
-    "bun-plugin-dts": "^0.2.1",
-    "@types/bun": "^1.0.0",
-    "typescript": "^5.2.2"
+    "@stylistic/eslint-plugin": "latest",
+    "eslint": "latest",
+    "typescript-eslint": "latest",
+    "eslint-plugin-jsdoc": "latest",
+    "@types/bun": "latest",
+    "mitata": "latest",
+    "typescript": "latest"
   }
 }
