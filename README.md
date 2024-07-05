@@ -1,8 +1,8 @@
-# Kurasu (クラス)
+# Kurasu (クラス) - Core
 
 ## Introduction
 
-**Kurasu** is a simple and powerful library tailored for managing class-based variants in your **JavaScript** or **TypeScript** projects. It allows you to define and manipulate **CSS** class names dynamically based on various conditions, making it easier to handle styling variations in a clean and maintainable way.
+**Kurasu Core** is a simple and powerful library tailored for managing class-based variants in your **JavaScript** or **TypeScript** projects. It allows you to define and manipulate **CSS** class names dynamically based on various conditions, making it easier to handle styling variations in a clean and maintainable way.
 
 ### Key Features
 
@@ -18,7 +18,7 @@
 
 ### Installation
 
-To use **Kurasu** in your project, you can install it as a dependency with **npm**, **yarn**, **pnpm** or **bun**:
+To use **Kurasu Core** in your project, you can install it as a dependency with **npm**, **yarn**, **pnpm** or **bun**:
 
 ```
 bun add -D @kurasu/core
@@ -31,7 +31,7 @@ Note: Use a runtime of your choice
 `example.tsx`
 
 ```js
-import { Variants } from "kurasu";
+import { Variants, type VariantsType, type VariantKey  } from "@kurasu/core";
 
 const variants = new Variants({
   base: 'base-class',
@@ -60,9 +60,13 @@ const variants = new Variants({
   }
 })
 
+type AllVariants = VariantsExtracted<typeof variants.getVariants>
+type Size = VariantKey<AllVariants, 'size'>
+type Color = VariantKey<AllVariants, 'color'>
+
 // In this example a JSX component
 export const Example = (
-  { size, color }: { size: 'small' | 'large', color: 'light' | 'dark' }
+  { size, color }: { size: Size, color: Color }
 ) => {
   return (
     <div className={variants.forgeClasses({ size, color })} />
@@ -130,6 +134,22 @@ type VariantOptions<V extends VariantsMap> = {
 };
 ```
 
+#### VariantsType
+
+Extracts the type of the variants object returned by the getVariants method in the Variants class.
+
+```ts
+export type VariantsType<T> = T extends () => infer R ? R : never;
+```
+
+#### VariantKey
+
+Extracts the keys of a specific variant category from the variants configuration object, providing a union type of those keys.
+
+```ts
+export type VariantKey<T, K extends keyof T> = keyof T[K];
+```
+
 #### CompoundVariant
 
 A function type that takes variant options and returns a class name string or undefined.
@@ -162,12 +182,12 @@ export declare function cn(...inputs: ClassValue[]): string;
 
 ## Acknowledgements
 
-**Kurasu** is heavily inspired by libraries such as [Stitches](https://github.com/stitchesjs/stitches), [Tailwind-Variants](https://github.com/joe-bell/cva) and [CVA](<[Tailwind-Variants](https://github.com/joe-bell/cva)>).
+**Kurasu Core** is heavily inspired by libraries such as [Stitches](https://github.com/stitchesjs/stitches), [Tailwind-Variants](https://github.com/joe-bell/cva) and [CVA](<[Tailwind-Variants](https://github.com/joe-bell/cva)>).
 
-Main difference between this library and above is that **Kurasu** is created in OOP and support custom functions as `compoundVariants`.
+Main difference between this library and above is that **Kurasu Core** is created in OOP and supports custom functions as `compoundVariants`.
 
 In the future I plan on adding more features that would expand the experience as well as creating functional API for people that don't really like OOP.
 
 ## License
 
-Kurasu is licensed under the MIT License.
+Kurasu Core is licensed under the MIT License.
