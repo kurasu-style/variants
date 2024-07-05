@@ -1,7 +1,5 @@
 // TODO: Add a way to pull types from the variants
-
-export * as utils from "./utils";
-
+export { cn, type ClassValue } from "./utils";
 import { cn } from "./utils";
 
 type VariantsMap = {
