@@ -1,10 +1,8 @@
-// TODO: Add a way to pull types from the variants
 import { cn } from "./utils";
 
 export { cn, type ClassValue } from "./utils";
 
 export type VariantsType<T> = T extends () => infer R ? R : never;
-export type VariantKey<T, K extends keyof T> = keyof T[K];
 
 type VariantsMap = {
   [key: string]: { [key: string]: string };
@@ -40,8 +38,20 @@ export class Variants<V extends VariantsMap, D extends DefaultMap<V>> {
     this.compoundVariants = config.compoundVariants || [];
   }
 
+  getBase(): string {
+    return this.base;
+  }
+
   getVariants(): V {
     return this.variants;
+  }
+
+  getVariant<K extends keyof V>(key: K): V[K] {
+    return this.variants[key];
+  }
+
+  getDefault(): D {
+    return this.default;
   }
 
   forgeClasses(options: VariantOptions<V> = {}): string {

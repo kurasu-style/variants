@@ -1,5 +1,4 @@
 export type VariantsType<T> = T extends () => infer R ? R : never;
-export type VariantKey<T, K extends keyof T> = keyof T[K];
 
 type VariantsMap = {
   [key: string]: { [key: string]: string };
@@ -30,5 +29,9 @@ export class Variants<V extends VariantsMap, D extends DefaultMap<V>> {
     compoundVariants?: CompoundVariant<V>[];
   });
 
+  getBase(): string;
+  getVariants(): V;
+  getVariant<K extends keyof V>(key: K): V[K];
+  getDefault(): D;
   forgeClasses(options?: VariantOptions<V>): string;
 }
