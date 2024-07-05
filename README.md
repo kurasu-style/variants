@@ -31,7 +31,7 @@ Note: Use a runtime of your choice
 `example.tsx`
 
 ```js
-import { Variants, type VariantsType, type VariantKey  } from "@kurasu/core";
+import { Variants, type VariantsType  } from "@kurasu/core";
 
 const variants = new Variants({
   base: 'base-class',
@@ -60,9 +60,8 @@ const variants = new Variants({
   }
 })
 
-type AllVariants = VariantsExtracted<typeof variants.getVariants>
-type Size = VariantKey<AllVariants, 'size'>
-type Color = VariantKey<AllVariants, 'color'>
+type Size = keyof VariantType<typeof variants.getVariants>['size']
+type Color = keyof VariantType<typeof variants.getVariants>['color']
 
 // In this example a JSX component
 export const Example = (
@@ -140,14 +139,6 @@ Extracts the type of the variants object returned by the getVariants method in t
 
 ```ts
 export type VariantsType<T> = T extends () => infer R ? R : never;
-```
-
-#### VariantKey
-
-Extracts the keys of a specific variant category from the variants configuration object, providing a union type of those keys.
-
-```ts
-export type VariantKey<T, K extends keyof T> = keyof T[K];
 ```
 
 #### CompoundVariant
