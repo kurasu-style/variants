@@ -1,8 +1,8 @@
-# Kurasu (クラス) - Core
+# Kurasu (クラス) - Variants
 
 ## Introduction
 
-**Kurasu Core** is a simple and powerful library tailored for managing class-based variants in your **JavaScript** or **TypeScript** projects. It allows you to define and manipulate **CSS** class names dynamically based on various conditions, making it easier to handle styling variations in a clean and maintainable way.
+**Kurasu Variants** is a simple and powerful library tailored for managing class-based variants in your **JavaScript** or **TypeScript** projects. It allows you to define and manipulate **CSS** class names dynamically based on various conditions, making it easier to handle styling variations in a clean and maintainable way.
 
 ### Key Features
 
@@ -18,10 +18,10 @@
 
 ### Installation
 
-To use **Kurasu Core** in your project, you can install it as a dependency with **npm**, **yarn**, **pnpm** or **bun**:
+To use **Kurasu Variants** in your project, you can install it as a dependency with **npm**, **yarn**, **pnpm** or **bun**:
 
 ```
-bun add -D @kurasu/core
+bun add -D @kurasu/variants
 ```
 
 Note: Use a runtime of your choice
@@ -31,7 +31,7 @@ Note: Use a runtime of your choice
 `example.tsx`
 
 ```js
-import { Variants, type VariantsType  } from "@kurasu/core";
+import { Variants, type VariantsType  } from "@kurasu/variants";
 
 const variants = new Variants({
   base: 'base-class',
@@ -173,12 +173,12 @@ export declare function cn(...inputs: ClassValue[]): string;
 
 ## Acknowledgements
 
-**Kurasu Core** is heavily inspired by libraries such as [Stitches](https://github.com/stitchesjs/stitches), [Tailwind-Variants](https://github.com/joe-bell/cva) and [CVA](<[Tailwind-Variants](https://github.com/joe-bell/cva)>).
+**Kurasu Variants** is heavily inspired by libraries such as [Stitches](https://github.com/stitchesjs/stitches), [Tailwind-Variants](https://github.com/joe-bell/cva) and [CVA](<[Tailwind-Variants](https://github.com/joe-bell/cva)>).
 
-Main difference between this library and above is that **Kurasu Core** is created in OOP and supports custom functions as `compoundVariants`.
+Main difference between this library and above is that **Kurasu Variants** is created in OOP and supports custom functions as `compoundVariants`.
 
 In the future I plan on adding more features that would expand the experience as well as creating functional API for people that don't really like OOP.
 
 ## License
 
-Kurasu Core is licensed under the MIT License.
+Kurasu Variants is licensed under the MIT License.

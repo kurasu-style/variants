@@ -1,6 +1,6 @@
 {
-  "name": "@kurasu/core",
-  "version": "0.2.0",
+  "name": "@kurasu/variants",
+  "version": "0.2.1",
   "main": "lib/index.js",
   "type": "module",
   "types": "lib/index.d.ts",
@@ -25,12 +25,12 @@
     "lib"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/kurasu-style/core",
+  "homepage": "https://github.com/kurasu-style/variants",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kurasu-style/core"
+    "url": "git+https://github.com/kurasu-style/variants"
   },
-  "bugs": "https://github.com/kurasu-style/core/issues",
+  "bugs": "https://github.com/kurasu-style/variants/issues",
   "author": "Dawid Seipold <contact@dawidseipold.com>",
   "devDependencies": {
     "@stylistic/eslint-plugin": "latest",
