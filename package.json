@@ -1,6 +1,6 @@
 {
   "name": "@kurasu/variants",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "main": "lib/index.js",
   "type": "module",
   "types": "lib/index.d.ts",
@@ -19,7 +19,8 @@
   "scripts": {
     "build:test": "bun build.ts && bun test",
     "lint": "eslint ./src",
-    "lint:fix": "eslint ./src --fix"
+    "lint:fix": "eslint ./src --fix",
+    "publish": "npm publish"
   },
   "files": [
     "lib"
